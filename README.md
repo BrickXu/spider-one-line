@@ -8,7 +8,8 @@ curl -s --compressed  https://kccncna17.sched.com/ | egrep "<span class='event e
 
 ## SNYK Vulnerability DB
 
-Coming soon
+W.I.P
 
 ```shell
+PAGE=`curl -s https://snyk.io/vuln/\?packageManager\=all | grep -oE '<a class="pagination__link" href="/vuln/page/(\d+)"><span>(\d+)</span></a>' | awk 'END {print}' | grep -oE  '<span>(\d+)</span>' | grep -oE '\d+'`; for (( s=1; s<=$PAGE; s++ )) do curl -s --compressed "https://snyk.io/vuln/page/$s?packageManager=all" | wc -l; done
 ```
